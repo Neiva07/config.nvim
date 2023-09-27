@@ -18,6 +18,7 @@ lsp.ensure_installed({
   'lua_ls',
   'eslint',
   'rust_analyzer',
+  'gopls',
 })
 
 -- Fix Undefined global 'vim'
@@ -64,6 +65,24 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
+--
+-- local function nvim_create_augroups(definitions)
+--   for group_name, definition in pairs(definitions) do
+--     vim.api.nvim_command('augroup ' .. group_name)
+--     vim.api.nvim_command('autocmd!')
+--     for _, def in ipairs(definition) do
+--       local command = table.concat(vim.tbl_flatten { 'autocmd', def }, ' ')
+--       vim.api.nvim_command(command)
+--     end
+--     vim.api.nvim_command('augroup END')
+--   end
+-- end
+--
+-- nvim_create_augroups({
+--   go_save = {
+--     { "BufWritePre", "*.go", "lua goimports(1000)" },
+--   }
+-- })
 
 lsp.setup()
 
